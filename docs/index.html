@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación del Proyecto - Gestión de Tareas  </title>
+    <link rel="stylesheet" href="styles.css"> <!-- Opcional: Archivo CSS para estilizar -->
+</head>
+<body>
+    <header>
+        <h1>Gestión de Tareas - Documentación del Proyecto <br> Equipo Los Insanitos V2 </h1>
+        <p>Documentación completa del sistema CRUD para la gestión de tareas. 
+            <br> Link Repositorio: <a href="https://github.com/MrMetalXD/Proyecto-CRUD-TAREAS-Mongo"> Proyecto MongoDB</a> <br>
+            Link Repositorio: <a href="https://github.com/RodoBang/Proyecto-CRUD_Tareas"> Proyecto Firebase</a></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#requisitos">Requisitos</a></li>
+            <li><a href="#instalacion">Instalación</a></li>
+            <li><a href="#documentacion-tecnica">Documentación Técnica</a></li>
+            <li><a href="#funcionalidades">Endpoints y Funcionalidades</a></li>
+            <li><a href="#ejemplos">Ejemplos de Uso</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section id="introduccion">
+        <h2>Introducción</h2>
+        <p>El proyecto "Gestión de Tareas" es una aplicación de escritorio desarrollada con NodeJS express con el objetivo de facilitar la administración de tareas personales o de equipo. La aplicación permite a los usuarios crear, visualizar, modificar y eliminar tareas de manera eficiente. El sistema ofrece una experiencia fluida para la gestión de actividades diarias. Esta documentación proporciona una guía completa para instalar, configurar y utilizar el sistema, junto con una referencia técnica de las funcionalidades y clases principales.</p>
+    </section>
+    
+
+    <section id="requisitos">
+        <h2>Requisitos</h2>
+        <p>Para ejecutar correctamente este proyecto de gestión de tareas, asegúrate de cumplir con los siguientes requisitos:</p>
+        <ul>
+            <li>Node.js versión 16 o superior</li>
+            <li>MongoDB como base de datos para almacenar las tareas</li>
+            <li>Dependencias adicionales gestionadas mediante <code>npm</code>, incluyendo:</li>
+            <ul>
+                <li><strong>bcrypt</strong>: para el manejo seguro de contraseñas</li>
+                <li><strong>express</strong>: framework para manejar las solicitudes HTTP</li>
+                <li><strong>firebase-admin</strong>: para integración con Firebase, si es necesario</li>
+                <li><strong>jsonwebtoken</strong>: para autenticación basada en tokens JWT</li>
+                <li><strong>mongoose</strong>: para el manejo de datos en MongoDB</li>
+            </ul>
+            <li>Para pruebas y desarrollo, asegúrate de instalar también las siguientes dependencias de desarrollo:</li>
+            <ul>
+                <li><strong>chai</strong> y <strong>mocha</strong>: para pruebas unitarias</li>
+                <li><strong>supertest</strong>: para pruebas de API</li>
+            </ul>
+        </ul>
+    </section>
+    
+    
+
+    <section id="instalacion">
+        <h2>Instalación</h2>
+        <p>Para instalar y configurar el proyecto, sigue estos pasos:</p>
+        <ol>
+            <li><strong>Clona el repositorio:</strong> Clona el repositorio en tu máquina local utilizando <code>git clone [URL_DEL_REPOSITORIO]</code>.</li>
+            <li><strong>Instala las dependencias:</strong> Navega a la carpeta raíz del proyecto y ejecuta <code>npm install</code> para instalar todas las dependencias listadas en <code>package.json</code>.</li>
+            <li><strong>Configura el archivo <code>.env</code>:</strong> Crea un archivo <code>.env</code> en la raíz del proyecto y define las variables de entorno necesarias (por ejemplo, conexión a MongoDB, claves JWT, etc.).</li>
+            <li><strong>Inicia la aplicación:</strong> Ejecuta <code>npm start</code> para iniciar el servidor o <code>npm run dev</code> si estás usando <code>nodemon</code> para desarrollo.</li>
+        </ol>
+    </section>
+    
+    
+
+    <section id="documentacion-tecnica">
+        <h2>Documentación Técnica</h2>
+        <p>Esta sección describe las principales funcionalidades y controladores del proyecto:</p>
+        <h3>Controladores Principales</h3>
+        <h4>TareasController.js</h4>
+        <p>Controlador que maneja todas las operaciones CRUD para las tareas. Incluye métodos para crear, actualizar, obtener y eliminar tareas en la base de datos.</p>
+        <h4>AuthController.js</h4>
+        <p>Controlador encargado de la autenticación de usuarios. Utiliza <code>jsonwebtoken</code> para generar y verificar tokens JWT, asegurando que sólo los usuarios autenticados puedan acceder a ciertos endpoints.</p>
+        <h4>db.js</h4>
+        <p>Módulo de conexión a MongoDB utilizando <code>mongoose</code>. Configura la conexión y gestiona cualquier error de conectividad.</p>
+    </section>
+    
+
+    <section id="funcionalidades">
+        <h2>Endpoints y Funcionalidades</h2>
+        <p>El sistema permite realizar operaciones CRUD sobre las tareas a través de los siguientes endpoints:</p>
+        <ul>
+            <li><strong>POST /api/tareas:</strong> Crea una nueva tarea. Requiere autenticación y un cuerpo JSON con los detalles de la tarea.</li>
+            <li><strong>GET /api/tareas:</strong> Recupera todas las tareas disponibles. Requiere autenticación.</li>
+            <li><strong>PUT /api/tareas/:id:</strong> Actualiza una tarea específica identificada por su ID. Requiere autenticación.</li>
+            <li><strong>DELETE /api/tareas/:id:</strong> Elimina una tarea específica. Requiere autenticación.</li>
+        </ul>
+    </section>
+    
+
+    <section id="ejemplos">
+        <h2>Ejemplos de Uso</h2>
+        
+        <h3>Crear una nueva tarea</h3>
+        <p>Envía una solicitud <strong>POST</strong> a <code>/tasks</code> con el siguiente cuerpo JSON para crear una nueva tarea:</p>
+        <pre><code class="json">
+    POST /tasks
+    Headers:
+    Authorization: //Token de autenticación
+    x-api-key: //Clave de API
+    
+    Body:
+    {
+        "title": "Tarea de prueba",
+        "description": "Esta es una tarea de prueba"
+    }
+        </code></pre>
+    
+        <h3>Obtener todas las tareas</h3>
+        <p>Envía una solicitud <strong>GET</strong> a <code>/tasks</code> para obtener todas las tareas del usuario autenticado:</p>
+        <pre><code class="json">
+    GET /tasks
+    Headers:
+    Authorization: //Token de autenticación
+    x-api-key: //Clave de API
+    
+    Response:
+    [
+        {
+            "id": "1",
+            "title": "Tarea de prueba",
+            "description": "Esta es una tarea de prueba",
+            "completed": false
+        },
+        ...
+    ]
+        </code></pre>
+    
+        <h3>Actualizar una tarea</h3>
+        <p>Envía una solicitud <strong>PUT</strong> a <code>/tasks/:id</code> con el ID de la tarea en la URL para actualizar los detalles de una tarea existente:</p>
+        <pre><code class="json">
+    PUT /tasks/1
+    Headers:
+    Authorization: //Token de autenticación
+    x-api-key: //Clave de API
+    
+    Body:
+    {
+        "title": "Tarea actualizada",
+        "description": "Descripción actualizada",
+        "completed": true
+    }
+    
+    Response:
+    {
+        "id": "1",
+        "title": "Tarea actualizada",
+        "description": "Descripción actualizada",
+        "completed": true
+    }
+        </code></pre>
+    
+        <h3>Eliminar una tarea</h3>
+        <p>Envía una solicitud <strong>DELETE</strong> a <code>/tasks/:id</code> con el ID de la tarea en la URL para eliminar una tarea existente:</p>
+        <pre><code class="json">
+    DELETE /tasks/1
+    Headers:
+    Authorization: //Token de autenticación
+    x-api-key: //Clave de API
+    
+    Response:
+    {
+        "message": "Tarea eliminada correctamente"
+    }
+        </code></pre>
+    </section>
+    
+
+    <script>
+        async function obtenerTareas() {
+            try {
+                const respuesta = await fetch('http://localhost:3000/api/tareas', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                             }
+                });
+                const tareas = await respuesta.json();
+        
+                const contenedorTareas = document.getElementById('tareas-lista');
+                contenedorTareas.innerHTML = '';
+        
+                tareas.forEach(tarea => {
+                    const tareaElemento = document.createElement('div');
+                    tareaElemento.classList.add('tarea');
+                    tareaElemento.innerHTML = `
+                        <h3>${tarea.nombre}</h3>
+                        <p>${tarea.descripcion}</p>
+                        <p><strong>Estado:</strong> ${tarea.completada ? 'Completada' : 'Pendiente'}</p>
+                    `;
+                    contenedorTareas.appendChild(tareaElemento);
+                });
+            } catch (error) {
+                console.error('Error al obtener tareas:', error);
+            }
+        }
+        
+        // Llamada a la función al cargar la página
+        document.addEventListener('DOMContentLoaded', obtenerTareas);
+        </script>
+        
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>Si necesitas ayuda adicional o tienes dudas, puedes ponerte en contacto con el equipo de desarrollo de <b>Los Insanitos V2</b> a través de los correos: 
+       <br> <a href="mailto:jorobanuelosga@ittepic.edu.mx">jorobanuelosga@ittepic.edu.mx</a> <br>
+            <a href="mailto:luanortegami@ittepic.edu.mx">luanortegami@ittepic.edu.mx</a> <br>
+            <a href="mailto:joedgonzalezco@ittepic.edu.mx">joedgonzalezco@ittepic.edu.mx</a> <br>
+            <a href="mailto:alcuevasal@ittepic.edu.mx">alcuevasal@ittepic.edu.mx</a>.</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Sistema de Gestión de Tareas - Desarrollo de Servicios Web</p>
+    </footer>
+</body>
+</html>
