@@ -1,0 +1,162 @@
+/* Reset básico para uniformidad en todos los navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+/* Estilo para el encabezado */
+header {
+    background-color: #006699;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+}
+
+header a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para la navegación */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: #00557a;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Estilo para las secciones */
+section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    color: #00557a;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+section p, section ul, section ol {
+    margin-bottom: 15px;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+section ul, section ol {
+    padding-left: 20px;
+}
+
+code {
+    background-color: #f4f4f4;
+    color: #d6336c;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Estilo para el footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #006699;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 0.9em;
+    margin-top: 20px;
+}
+
+/* Enlaces */
+a {
+    color: #006699;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries para responsive design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    section h2 {
+        font-size: 1.3em;
+    }
+}
+
+#tareas {
+    margin-top: 20px;
+}
+
+#tareas-lista {
+    display: flex;
+    flex-direction: column;
+}
+
+.tarea {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.tarea h3 {
+    color: #00557a;
+}
